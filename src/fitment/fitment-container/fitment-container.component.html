@@ -1,1 +1,25 @@
 <button (click)="getYears()"> Select vehicle </button>
+
+
+
+<div class="grid_container" *ngIf="years$.length > 0">
+  <ul class="labels_conatiner">
+    <li [class.selected]="years$.length > 0">Years</li>
+    <li [class.selected]="makes$.length > 0">Make</li>
+    <li [class.selected]="models$.length > 0">Model</li>
+    <li [class.selected]="trims$.length > 0">trim</li>
+  </ul>
+  <div class="grid" *ngIf="years$.length > 0 && makes$.length == 0">
+    <div class="grid__item" *ngFor="let year of years$" (click)="onChangeYear(year)">{{year}}</div>
+  </div>
+
+  <div class="grid" *ngIf="makes$.length > 0 && models$.length == 0">
+    <div class="grid__item" *ngFor="let make of makes$" (click)="onChangeMake(make)">{{make}}</div>
+  </div>
+  <div class="grid" *ngIf="models$.length > 0 && trims$.length == 0">
+    <div class="grid__item" *ngFor="let model of models$" (click)="onChangeModel(model)">{{model}}</div>
+  </div>
+  <div class="grid" *ngIf="trims$.length > 0">
+    <div class="grid__item" *ngFor="let trim of trims$" (click)="onChangeTrim(trim)">{{trim}}</div>
+  </div>
+</div>
